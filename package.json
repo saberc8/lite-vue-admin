@@ -1,7 +1,7 @@
 {
   "name": "lite-vue-admin",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "element-plus": "^2.3.3",
     "pinia": "^2.0.34",
+    "sass": "^1.62.0",
+    "unplugin-auto-import": "^0.15.2",
+    "unplugin-vue-components": "^0.24.1",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
