@@ -10,7 +10,7 @@ const root: string = process.cwd()
 
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
   const env = loadEnv(mode, root)
-  const { VITE_PORT, VITE_PUBLIC_PATH, VITE_PROXY } = env
+  const { VITE_PORT, VITE_BASE_URL, VITE_PROXY } = env
   const isBuild = command === 'build'
   console.log(env, isBuild)
   return {
@@ -30,7 +30,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         resolvers: [ElementPlusResolver()],
       }),
     ],
-    base: VITE_PUBLIC_PATH,
+    base: VITE_BASE_URL,
     root,
     resolve: {
       alias: [{ find: '@', replacement: '/src' }],
