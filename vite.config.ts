@@ -15,7 +15,7 @@ const pathResolve = (dir: string): string => {
 
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
   const env = loadEnv(mode, root)
-  const { VITE_PORT, VITE_BASE_URL, VITE_PROXY } = env
+  const { VITE_PORT, VITE_BASE_URL, VITE_API_URL } = env
   const isBuild = command === 'build'
   console.log(env, isBuild)
   return {
@@ -46,7 +46,13 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       https: false,
       host: true,
       port: VITE_PORT as unknown as number,
-      proxy: VITE_PROXY as unknown as Record<string, string>,
+      proxy: {
+        '/api': {
+          target: VITE_API_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+      }
     },
   }
 }

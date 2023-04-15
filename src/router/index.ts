@@ -1,11 +1,16 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import { HomePath } from '@/config/constants'
+import { HomePath, LoginPath } from '@/config/constants'
 import Login from './modules/login'
-
+import { getToken } from '@/utils/auth'
 // 导入所有router
-const metaRouters: any = import.meta.glob('./modules/*.ts', { eager: true, import: 'default' })
+const metaRouters: any = import.meta.glob('./modules/*.ts', {
+  eager: true,
+  import: 'default',
+})
 // 处理路由
-export const routerArray: RouteRecordRaw[] = Object.keys(metaRouters).map((key) => metaRouters[key] || {})
+export const routerArray: RouteRecordRaw[] = Object.keys(metaRouters).map(
+  (key) => metaRouters[key] || {},
+)
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -24,6 +29,23 @@ export const routes: RouteRecordRaw[] = [
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.VITE_BASE_URL as string),
   routes,
+})
+
+router.beforeEach((to, _from, next) => {
+  const token = getToken()
+  if (to.path === '/login') {
+    if (token) {
+      next({ path: HomePath })
+    } else {
+      next()
+    }
+  } else {
+    if (token) {
+      next()
+    } else {
+      next({ path: LoginPath })
+    }
+  }
 })
 
 export default router

@@ -48,7 +48,6 @@
     if (!formEl) return
     await formEl.validate((valid, fields) => {
       if (valid) {
-        console.log('submit!')
         useUserStore.userLoginFn(loginForm)
       } else {
         console.log('error submit!', fields)
