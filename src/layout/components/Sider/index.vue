@@ -9,20 +9,22 @@
         <el-sub-menu v-if="item.children" :index="item.path">
           <template #title>
             <el-icon><location /></el-icon>
-            <span>{{ item.name }}</span>
+            <span>{{ item.meta.title }}</span>
           </template>
           <el-menu-item
             v-for="(itemChild, indexChild) in item.children"
             :key="indexChild"
           >
-            <el-menu-item :index="itemChild.path">{{
-              itemChild.name
-            }}</el-menu-item>
+            <el-menu-item
+              :index="itemChild.path"
+              @click="menuClick(itemChild)"
+              >{{ itemChild.meta.title }}</el-menu-item
+            >
           </el-menu-item>
         </el-sub-menu>
-        <el-menu-item v-else>
+        <el-menu-item v-else @click="menuClick(item)">
           <el-icon><icon-menu /></el-icon>
-          <template #title>{{ item.name }}</template>
+          <template #title>{{ item.meta.title }}</template>
         </el-menu-item>
       </div>
     </el-menu>
@@ -38,12 +40,17 @@
   } from '@element-plus/icons-vue'
   import { appName } from '@/constants'
   import { routerArray } from '@/router'
+  const router = useRouter()
   const collapse = ref(false)
   console.log(routerArray)
-  const menuList = computed(() => {
+  const menuList: any = computed(() => {
     // .filter((item) => item.meta?.hideMenu !== true)
     return routerArray
   })
+  const menuClick = (e: any) => {
+    console.log(e)
+    router.push(e.path)
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -67,7 +74,7 @@
       }
     }
     .layout-menu {
-      margin-top: 0px;
+      height: calc(100vh - 64px);
     }
   }
 </style>

@@ -3,8 +3,7 @@ export default {
   name: 'login',
   component: () => import('@/views/login/index.vue'),
   meta: {
-    title: '',
-    requiresAuth: false,
+    title: '登陆页',
     hideMenu: true,
   },
 }

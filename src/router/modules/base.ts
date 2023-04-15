@@ -4,7 +4,6 @@ export default {
   component: () => import('@/layout/index.vue'),
   redirect: '/base/dashboard',
   meta: {
-    requiresAuth: true,
     title: '基础',
     icon: 'icon-home',
   },
