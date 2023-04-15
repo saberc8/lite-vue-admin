@@ -1,9 +1,16 @@
 <template>
   <div class="app-page-about">
     <div>dependencies</div>
-    <el-tag type="primary" v-for="(item, index) in schema" class="m-1">{{ item.label }}</el-tag>
+    <el-space>
+      <el-tag   v-for="(item, index) in schema" :key="index">{{ item.label }}</el-tag>
+    </el-space>
+
     <div>devDependencies</div>
-    <el-tag type="primary" v-for="(item, index) in devSchema" class="m-1">{{ item.label }}</el-tag>
+    <el-space>
+      <el-tag v-for="(item, index) in devSchema" :key="index">{{
+        item.label
+      }}</el-tag>
+    </el-space>
   </div>
 </template>
 
