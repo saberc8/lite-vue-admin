@@ -1,52 +1,73 @@
 <template>
   <div class="layout-sider">
     <div class="logo">
-      <img class="" src="/logo.jpg" alt="" />
-      <span>{{ appName }}</span>
+      <img class="logo-img" src="/logo.jpg" alt="" />
+      <h3 class="logo-name" v-show="!collapse">{{ appName }}</h3>
     </div>
-    <el-menu :collapse="collapse" theme="dark">
-      <el-sub-menu index="1">
-        <template #title>
-          <el-icon><location /></el-icon>
-          <span>Navigator One</span>
-        </template>
-        <el-menu-item-group>
-          <template #title><span>Group One</span></template>
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item two</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-sub-menu index="1-4">
-          <template #title><span>item four</span></template>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
+    <el-menu class="layout-menu" :collapse="collapse">
+      <div v-for="(item, index) in menuList" :key="index">
+        <el-sub-menu v-if="item.children" :index="item.path">
+          <template #title>
+            <el-icon><location /></el-icon>
+            <span>{{ item.name }}</span>
+          </template>
+          <el-menu-item
+            v-for="(itemChild, indexChild) in item.children"
+            :key="indexChild"
+          >
+            <el-menu-item :index="itemChild.path">{{
+              itemChild.name
+            }}</el-menu-item>
+          </el-menu-item>
         </el-sub-menu>
-      </el-sub-menu>
-      <el-menu-item index="2">
-        <el-icon><icon-menu /></el-icon>
-        <template #title>Navigator Two</template>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <el-icon><document /></el-icon>
-        <template #title>Navigator Three</template>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <el-icon><setting /></el-icon>
-        <template #title>Navigator Four</template>
-      </el-menu-item>
+        <el-menu-item v-else>
+          <el-icon><icon-menu /></el-icon>
+          <template #title>{{ item.name }}</template>
+        </el-menu-item>
+      </div>
     </el-menu>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { Document, Menu as IconMenu, Location, Setting } from '@element-plus/icons-vue'
+  import {
+    Document,
+    Menu as IconMenu,
+    Location,
+    Setting,
+  } from '@element-plus/icons-vue'
   import { appName } from '@/constants'
+  import { routerArray } from '@/router'
   const collapse = ref(false)
+  console.log(routerArray)
+  const menuList = computed(() => {
+    // .filter((item) => item.meta?.hideMenu !== true)
+    return routerArray
+  })
 </script>
 
 <style lang="scss" scoped>
   .layout-sider {
     height: 100vh;
+    position: relative;
+    overflow: scroll;
+    .logo {
+      position: sticky;
+      display: flex;
+      align-items: center;
+      height: 64px;
+      z-index: 999;
+      background-color: #fff;
+      top: 0;
+      padding: 0 10px;
+      &-img {
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+      }
+    }
+    .layout-menu {
+      margin-top: 0px;
+    }
   }
 </style>

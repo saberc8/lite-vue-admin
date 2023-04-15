@@ -5,5 +5,6 @@ export default {
   meta: {
     title: '',
     requiresAuth: false,
+    hideMenu: true,
   },
 }

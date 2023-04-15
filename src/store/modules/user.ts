@@ -4,15 +4,14 @@ import { userLogin } from '@/api/user/user'
 import { IUserLogin } from '@/api/user/types'
 import { setToken } from '@/utils/auth'
 import router from '@/router'
-
+import { IUserType } from './types'
 export const useUserStore = defineStore({
-  id: 'pure-user',
-  state: () => ({
-    // 用户名
+  id: 'user',
+  state: () :IUserType => ({
     username: '',
+    token: null
   }),
   actions: {
-    /** 存储用户名 */
     SET_USERNAME(username: string) {
       this.username = username
     },
@@ -20,6 +19,7 @@ export const useUserStore = defineStore({
       const res = await userLogin(data)
       console.log(res)
       setToken(res.token)
+      this.token = res.token
       router.push('/base/dashboard')
     }
   },

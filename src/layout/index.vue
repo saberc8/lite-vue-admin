@@ -25,10 +25,9 @@
 <style lang="scss" scoped>
   .layout-container {
     height: 100vh;
-    background-color: bisque;
+    background-color: #fff;
     .layout-sider {
-      height: 100vh;
-      background-color: aqua;
+      background-color: #fff;
     }
   }
 </style>
