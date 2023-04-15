@@ -15,11 +15,10 @@
     ],
     "skipLibCheck": true,
     "noEmit": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@": ["src"],
+  	  "@/*": ["src/*"]
     }
   },
   "include": [
@@ -29,7 +28,8 @@
     "src/**/*.vue",
     "auto-imports.d.ts",
     "components.d.ts",
-    "shims.d.ts"
+    "shims.d.ts",
+    "src/env.d.ts"
   ],
   "exclude": [
     "node_modules",
