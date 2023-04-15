@@ -9,7 +9,6 @@
       </el-header>
       <el-main>
         <LayoutContent></LayoutContent>
-        <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>

@@ -16,7 +16,7 @@ export const createAxios = (
       // 在发送请求之前做些什么
       // const { loading = true } = config
       console.log('config:', config)
-      config.headers.Authorization = getToken()
+      config.headers.token = getToken()
       // if (loading) addLoading()
       return config
     },

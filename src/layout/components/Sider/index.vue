@@ -33,10 +33,8 @@
 
 <script setup lang="ts">
   import {
-    Document,
     Menu as IconMenu,
     Location,
-    Setting,
   } from '@element-plus/icons-vue'
   import { appName } from '@/constants'
   import { routerArray } from '@/router'
