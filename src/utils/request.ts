@@ -1,10 +1,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
-import { getToken } from './auth'
+import { getToken, removeToken } from './auth'
 import { ElMessage, ElLoading } from 'element-plus'
+import router from '@/router'
 
-export const createAxios = (
-  config?: AxiosRequestConfig,
-): AxiosInstance => {
+export const createAxios = (config?: AxiosRequestConfig): AxiosInstance => {
   const instance = axios.create({
     timeout: 1000, //超时配置
     ...config, // 自定义配置覆盖基本配置
@@ -36,7 +35,6 @@ export const createAxios = (
       if (code === 0) {
         return result
       } else {
-        console.log(result)
         ElMessage.error(result.message)
         return Promise.reject(response.data)
       }
@@ -46,6 +44,14 @@ export const createAxios = (
       console.log('error-response:', error.response)
       console.log('error-config:', error.config)
       console.log('error-request:', error.request)
+      const { code, message } = error.response.data
+      console.log('code:', code)
+      if (code === 1) {
+        ElMessage.error(message)
+        removeToken()
+        router.push('/login')
+        return
+      }
       ElMessage({
         message:
           error?.response?.data?.message ||

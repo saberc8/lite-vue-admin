@@ -34,7 +34,7 @@
   import userModal from './components/userModal.vue'
   import dayjs from 'dayjs'
   import { FormState } from './type'
-  import { ElMessage } from 'element-plus'
+  import { ElButton, ElMessage, ElTag, ElSpace } from 'element-plus'
   const proTable = ref()
   console.log(proTable.value, 'proTable')
   const formData = ref<FormState>({})
@@ -59,7 +59,7 @@
       slots: {
         default: ({ row }): VNode => {
           return createVNode(
-            resolveComponent('el-tag'),
+            ElTag,
             {
               type: row.isSuper ? 'success' : '',
             },
@@ -93,7 +93,7 @@
       slots: {
         default: ({ row }): VNode => {
           return createVNode(
-            resolveComponent('el-space'),
+            ElSpace,
             {
               size: 10,
               wrap: true,
@@ -101,7 +101,7 @@
             {
               default: (): VNode[] => [
                 createVNode(
-                  resolveComponent('el-button'),
+                  ElButton,
                   {
                     type: 'primary',
                     size: 'small',
@@ -112,7 +112,7 @@
                   () => '编辑',
                 ),
                 createVNode(
-                  resolveComponent('el-button'),
+                  ElButton,
                   {
                     type: 'primary',
                     size: 'small',
@@ -123,7 +123,7 @@
                   () => '绑定角色',
                 ),
                 createVNode(
-                  resolveComponent('el-button'),
+                  ElButton,
                   {
                     type: 'danger',
                     size: 'small',

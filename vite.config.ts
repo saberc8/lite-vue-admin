@@ -28,7 +28,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     plugins: [
       vue(),
       AutoImport({
-        // resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver()],
         // dts: 'src/auto-imports.d.ts', // 可以自定义文件生成的位置，默认是根目录下
         imports: [
           // 插件预设支持导入的api
@@ -37,9 +37,9 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
           'pinia',
         ],
       }),
-      // Components({
-      //   resolvers: [ElementPlusResolver()],
-      // }),
+      Components({
+        resolvers: [ElementPlusResolver()],
+      }),
       createStyleImportPlugin({
         resolves: [VxeTableResolve()],
       }),

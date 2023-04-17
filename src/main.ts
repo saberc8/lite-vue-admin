@@ -3,10 +3,10 @@ import './style.css'
 import App from './App.vue'
 import router from './router'
 import { setupStore } from '@/store'
-// import 'element-plus/es/components/message/style/css'
+import 'element-plus/es/components/message/style/css'
 
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
+// import ElementPlus from 'element-plus'
+// import 'element-plus/dist/index.css'
 
 // import VXETable from 'vxe-table'
 import XEUtils from 'xe-utils'
@@ -60,7 +60,7 @@ VXETable.setup({
 
 const app = createApp(App)
 app.use(router)
-app.use(ElementPlus)
+// app.use(ElementPlus)
 // 安装表格
 //可选组件
 app

@@ -4,7 +4,7 @@
       <LayoutSider></LayoutSider>
     </el-aside>
     <el-container>
-      <el-header>
+      <el-header class="layout-header">
         <LayoutHeader></LayoutHeader>
       </el-header>
       <el-main>
@@ -27,6 +27,9 @@
     background-color: #fff;
     .layout-sider {
       background-color: #fff;
+    }
+    .layout-header {
+      box-shadow: 0 2px 4px rgba(0, 21, 41, 0.08);
     }
   }
 </style>
