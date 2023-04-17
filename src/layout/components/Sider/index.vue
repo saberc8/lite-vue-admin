@@ -4,7 +4,13 @@
       <img class="logo-img" src="/logo.jpg" alt="" />
       <h3 class="logo-name" v-show="!collapse">{{ appName }}</h3>
     </div>
-    <el-menu class="layout-menu" :collapse="collapse">
+    <el-menu
+      class="layout-menu"
+      :collapse="collapse"
+      default-active="/base/dashboard"
+      text-color="#fff"
+      background-color="#001529"
+    >
       <div v-for="(item, index) in menuList" :key="index">
         <el-sub-menu v-if="item.children" :index="item.path">
           <template #title>
@@ -53,13 +59,14 @@
     height: 100vh;
     position: relative;
     overflow: scroll;
+    background-color: #001529;
+    color: #fff;
     .logo {
       position: sticky;
       display: flex;
       align-items: center;
       height: 64px;
       z-index: 999;
-      background-color: #fff;
       top: 0;
       padding: 0 10px;
       &-img {
@@ -70,6 +77,7 @@
     }
     .layout-menu {
       height: calc(100vh - 64px);
+      background-color: #001529;
     }
   }
   :deep(.el-menu) {

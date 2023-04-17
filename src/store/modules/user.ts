@@ -4,7 +4,7 @@ import { userLogin } from '@/api/user/user'
 import { IUserLogin } from '@/api/user/types'
 import { setToken } from '@/utils/auth'
 import router from '@/router'
-import { IUserType } from './types'
+import { IUserType } from '../types'
 export const useUserStore = defineStore({
   id: 'user',
   state: () :IUserType => ({
