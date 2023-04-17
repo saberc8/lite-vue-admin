@@ -32,10 +32,7 @@
 </template>
 
 <script setup lang="ts">
-  import {
-    Menu as IconMenu,
-    Location,
-  } from '@element-plus/icons-vue'
+  import { Menu as IconMenu, Location } from '@element-plus/icons-vue'
   import { appName } from '@/constants'
   import { routerArray } from '@/router'
   const router = useRouter()
@@ -74,5 +71,8 @@
     .layout-menu {
       height: calc(100vh - 64px);
     }
+  }
+  :deep(.el-menu) {
+    border-right: none;
   }
 </style>

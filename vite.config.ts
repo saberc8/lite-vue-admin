@@ -38,7 +38,12 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         ],
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver(
+          {
+            importStyle: 'sass',
+            directives: true,
+          }
+        )],
       }),
       createStyleImportPlugin({
         resolves: [VxeTableResolve()],
@@ -49,6 +54,13 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     resolve: {
       alias: {
         '@': pathResolve('src'),
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/style/element.scss" as *;`,
+        },
       },
     },
     server: {

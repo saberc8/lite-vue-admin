@@ -1,6 +1,6 @@
 <template>
   <el-container class="layout-container">
-    <el-aside :width="siderWidth">
+    <el-aside :width="siderWidth" class="layout-aside">
       <LayoutSider></LayoutSider>
     </el-aside>
     <el-container>
@@ -25,8 +25,9 @@
   .layout-container {
     height: 100vh;
     background-color: #fff;
-    .layout-sider {
-      background-color: #fff;
+    .layout-aside {
+      // 往右投影
+      box-shadow: 2px 0 4px rgba(0, 21, 41, 0.08);
     }
     .layout-header {
       box-shadow: 0 2px 4px rgba(0, 21, 41, 0.08);
