@@ -7,7 +7,7 @@
     <el-menu
       class="layout-menu"
       :collapse="collapse"
-      default-active="/base/dashboard"
+      :default-active="defaultActive"
       text-color="#fff"
       background-color="#001529"
     >
@@ -42,11 +42,15 @@
   import { appName } from '@/constants'
   import { routerArray } from '@/router'
   const router = useRouter()
+  const route = useRoute()
+  const defaultActive = ref('/base/dashboard')
+  const path = route.path
+  console.log(path)
+  defaultActive.value = path
   const collapse = ref(false)
   console.log(routerArray)
   const menuList: any = computed(() => {
-    // .filter((item) => item.meta?.hideMenu !== true)
-    return routerArray
+    return routerArray.filter((item) => item.meta?.hideMenu !== true)
   })
   const menuClick = (e: any) => {
     console.log(e)
@@ -69,6 +73,7 @@
       z-index: 999;
       top: 0;
       padding: 0 10px;
+      background-color: #001529;
       &-img {
         width: 32px;
         height: 32px;
@@ -82,5 +87,8 @@
   }
   :deep(.el-menu) {
     border-right: none;
+  }
+  :deep(.el-menu-item) {
+    width: 100%;
   }
 </style>
