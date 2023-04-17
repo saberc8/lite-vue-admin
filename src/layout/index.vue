@@ -28,6 +28,11 @@
     .layout-aside {
       // 往右投影
       box-shadow: 2px 0 4px rgba(0, 21, 41, 0.08);
+      // 滚动条样式
+      ::-webkit-scrollbar {
+        height: 2px;
+        width: 2px;
+      }
     }
     .layout-header {
       box-shadow: 0 2px 4px rgba(0, 21, 41, 0.08);
